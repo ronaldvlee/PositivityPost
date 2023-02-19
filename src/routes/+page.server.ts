@@ -78,32 +78,6 @@ export const load = (async () => {
     });
     // console.log(article);
   }
-  for (let article of payload["ABC"].items) {
-    processed.push({
-      title: article.title as string,
-      author: (article.creator as string) ?? "N/A",
-      link: article.link as string,
-      description: article.contentSnippet as string,
-      date: dayjs(article.isoDate as string).toString(),
-      source: "ABC",
-      sentiment: sentiment(`${article.title}: ${article.description}`),
-      topics: article?.categories[0]?.replace(/^\s+|\s+$/g, "").split(","),
-    });
-    // console.log(article?.categories[0]?.replace(/^\s+|\s+$/g, "").split(","));
-  }
-  for (let article of payload["YCombinator"].items) {
-    processed.push({
-      title: article.title as string,
-      author: (article.creator as string) ?? "N/A",
-      link: article.link as string,
-      description: article.contentSnippet as string,
-      date: dayjs(article.isoDate as string).toString(),
-      source: "ABC",
-      sentiment: sentiment(`${article.title}: ${article.description}`),
-      // topics: article?.categories[0]?.replace(/^\s+|\s+$/g, "").split(","),
-    });
-    console.log(article);
-  }
 
   return { articles: JSON.stringify(processed) };
 }) satisfies PageServerLoad;
