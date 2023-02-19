@@ -38,7 +38,7 @@ export const load = (async () => {
     "https://www.latimes.com/world-nation/rss2.0.xml#nt=0000016c-0bf3-d57d-afed-2fff84fd0000-1col-7030col1"
   );
 
-  payload["ABC"] = await parser.parseURL("https://abc7.com/feed/");
+  // payload["ABC"] = await parser.parseURL("https://abc7.com/feed/");
 
   // preprocess rss feeds, everything has a different format for what
   const processed: NewsArticle[] = [];
