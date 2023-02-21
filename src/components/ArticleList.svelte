@@ -17,9 +17,9 @@
 
 <div class="">
   {#each posts.filter((e) => {
-    if (!positiveNews && e.sentiment > 10) return false;
-    if (!negativeNews && e.sentiment < -10) return false;
-    if (!neutralNews && e.sentiment >= -10 && e.sentiment <= 10) return false;
+    if (!positiveNews && (e.sentiment ?? 0) > 10) return false;
+    if (!negativeNews && (e.sentiment ?? 0) < -10) return false;
+    if (!neutralNews && (e.sentiment ?? 0) >= -10 && (e.sentiment ?? 0) <= 10) return false;
 
     if (selectedTags.length == 0) return true;
     if (_.intersection(selectedTags, e.topics).length > 0) {

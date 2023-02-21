@@ -16,7 +16,7 @@ export interface NewsArticle {
   date: string;
   description: string;
   source: string;
-  sentiment: 0;
+  sentiment: number | null;
   topics?: string[];
 }
 
@@ -45,7 +45,7 @@ export const load = (async () => {
       description: htmlDecode(article.content as string) ?? "",
       date: dayjs(article.isoDate as string).toString(),
       source: "FiveThirtyEight",
-      sentiment: 0,
+      sentiment: null,
       topics: article.categories,
     });
   }
@@ -57,7 +57,7 @@ export const load = (async () => {
       description: article.content as string,
       date: dayjs(article.isoDate as string).toString(),
       source: "New York Times",
-      sentiment: 0,
+      sentiment: null,
       topics: article?.categories?.map((e: any) => e["_"]),
     });
   }
@@ -69,7 +69,7 @@ export const load = (async () => {
       description: article.contentSnippet as string,
       date: dayjs(article.isoDate as string).toString(),
       source: "Los Angeles Times",
-      sentiment: 0,
+      sentiment: null,
     });
   }
 
@@ -81,7 +81,7 @@ export const load = (async () => {
       description: article.contentSnippet as string,
       date: dayjs(article.isoDate as string).toString(),
       source: "ABC",
-      sentiment: 0,
+      sentiment: null,
       topics: article?.categories[0]?.replace(/^\s+|\s+$/g, "").split(","),
     });
   }
