@@ -73,10 +73,9 @@ export const load = (async () => {
           });
         }
       }),
-
     parser.parseURL("https://abc7.com/feed/").then((payload) => {
       for (let article of payload.items) {
-        if (!article || !article.categories) return;
+        if (!article || !article.categories) break;
         processed.push({
           title: article.title as string,
           author: (article.creator as string) ?? "N/A",
@@ -89,14 +88,12 @@ export const load = (async () => {
         });
       }
     }),
-
     parser
       .parseURL(
         "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114"
       )
       .then((payload) => {
         for (let article of payload.items) {
-          if (!article || !article.categories) return;
           processed.push({
             title: article.title as string,
             author: (article.creator as string) ?? "N/A",
@@ -104,6 +101,51 @@ export const load = (async () => {
             description: article.contentSnippet as string,
             date: dayjs(article.isoDate as string).toString(),
             source: "CNBC",
+            sentiment: null,
+          });
+        }
+      }),
+    parser.parseURL("http://feeds.bbci.co.uk/news/rss.xml").then((payload) => {
+      for (let article of payload.items) {
+        processed.push({
+          title: article.title as string,
+          author: (article.creator as string) ?? "N/A",
+          link: article.link as string,
+          description: article.contentSnippet as string,
+          date: dayjs(article.isoDate as string).toString(),
+          source: "BBC",
+          sentiment: null,
+        });
+      }
+    }),
+    parser
+      .parseURL(
+        "https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=bestl"
+      )
+      .then((payload) => {
+        for (let article of payload.items) {
+          processed.push({
+            title: article.title as string,
+            author: (article.creator as string) ?? "N/A",
+            link: article.link as string,
+            description: article.contentSnippet as string,
+            date: dayjs(article.isoDate as string).toString(),
+            source: "Reuters",
+            sentiment: null,
+          });
+        }
+      }),
+    parser
+      .parseURL("https://www.cbsnews.com/latest/rss/main")
+      .then((payload) => {
+        for (let article of payload.items) {
+          processed.push({
+            title: article.title as string,
+            author: (article.creator as string) ?? "N/A",
+            link: article.link as string,
+            description: article.contentSnippet as string,
+            date: dayjs(article.pubDate as string).toString(),
+            source: "CBS",
             sentiment: null,
           });
         }
