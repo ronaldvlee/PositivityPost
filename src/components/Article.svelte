@@ -15,8 +15,9 @@
 
   export let post: NewsArticle;
   export let selectedTags: string[];
-  if (post.sentiment == null) return;
-  const promise = getSentiment(post.description).then((res) => {
+  let promise: Promise<any>;
+  if (post.sentiment == null)
+    promise = getSentiment(post.description).then((res) => {
     post.sentiment = res["sentiment"];
   });
 </script>
@@ -32,7 +33,7 @@
       <p>{post.description}</p>
       {#await promise}
         <p class="font-bold text-sm mt-1">Analyzing Sentiment...</p>
-      {:then sentiment}
+      {:then}
         <p class="font-bold text-sm mt-1">
           Sentiment: {post.sentiment?.toFixed(2)}
         </p>
