@@ -9,10 +9,9 @@
   export let data: PageData;
   let posts: NewsArticle[] = JSON.parse(data["articles"]) as NewsArticle[];
   let topicCounts: any = [];
-  posts = posts.sort((a, b) =>
-    a.date > b.date ? 1 : b.date < a.date ? -1 : 0
+  posts = posts.sort(
+    (a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
   );
-
   posts.forEach((post) => {
     if (post.topics)
       post.topics.forEach((t) => (topicCounts[t] = (topicCounts[t] || 0) + 1));
@@ -83,11 +82,10 @@
     <h1 class="text-4xl font-bold">Popular Topics</h1>
     <TopicSelector {topics} bind:selectedTags />
     <ArticleList
-      bind:search
       bind:positiveNews
       bind:negativeNews
       bind:neutralNews
-      {posts}
+      bind:posts
       {selectedTags}
     />
   </section>
@@ -163,7 +161,7 @@
   #aside {
     grid-area: aside;
   }
-  nav {
+  /* nav {
     grid-area: nav;
-  }
+  } */
 </style>

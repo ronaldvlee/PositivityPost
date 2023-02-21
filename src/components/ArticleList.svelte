@@ -4,10 +4,11 @@
   import { flip } from "svelte/animate";
   import type { NewsArticle } from "../routes/+page.server";
   import { goto } from "$app/navigation";
+  import Article from "./Article.svelte";
 
   export let posts: NewsArticle[];
   export let selectedTags: string[];
-  export let search: string;
+  // export let search: string;
 
   export let positiveNews: boolean;
   export let neutralNews: boolean;
@@ -28,32 +29,7 @@
     else return false;
   }) as post (post.title)}
     <!-- {#if selectedTags.length == 0 || _.intersection(selectedTags, post.topics).length > 0} -->
-    <a
-      class="flex flex-col mb-2 p-8 border text-black rounded-lg hover:bg-sky-100 transition-all hover:cursor-pointer"
-      href={post.link}
-    >
-      <h1 class="text-xl font-bold">{post.title}</h1>
-      <div class="flex flex-col md:flex-row ">
-        <section class="flex flex-col">
-          <p class="text-gray-500 text-sm">{post.author}, {post.source}</p>
-          <p>{post.description}</p>
-          <p>Sentiment: {post.sentiment.toFixed(2)}</p>
-        </section>
-      </div>
-      <div class="flex flex-wrap gap-2 mt-5">
-        {#if post.topics}
-          {#each post.topics as topic}
-            <div
-              class="text-sm rounded-lg border px-3 py-1 transition-all border-gray-400"
-              class:bg-black={selectedTags.indexOf(topic) > -1}
-              class:text-white={selectedTags.indexOf(topic) > -1}
-            >
-              {topic}
-            </div>
-          {/each}
-        {/if}
-      </div>
-    </a>
+    <Article bind:post {selectedTags} />
     <!-- {/if} -->
   {/each}
 </div>

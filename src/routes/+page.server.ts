@@ -1,18 +1,13 @@
 import Parser from "rss-parser";
 import type { PageServerLoad } from "./$types";
 import dayjs from "dayjs";
-import aposToLexForm from "apos-to-lex-form";
-import natural from "natural";
-const { WordTokenizer, SentimentAnalyzer, PorterStemmer } = natural;
+import { JSDOM } from "jsdom";
 
-function sentiment(string: string) {
-  const tokenizer = new WordTokenizer();
-  const tokenized = tokenizer.tokenize(aposToLexForm(string).toLowerCase());
-  const analyzer = new SentimentAnalyzer("English", PorterStemmer, "afinn");
-  return analyzer.getSentiment(tokenized) * 100;
+function htmlDecode(input: string) {
+  return input;
+  const dom = new JSDOM(input);
+  return dom.window.document.textContent;
 }
-
-// const sentiment = new Sentiment({});
 
 export interface NewsArticle {
   author: string;
@@ -21,7 +16,7 @@ export interface NewsArticle {
   date: string;
   description: string;
   source: string;
-  sentiment: number;
+  sentiment: 0;
   topics?: string[];
 }
 
@@ -38,7 +33,7 @@ export const load = (async () => {
     "https://www.latimes.com/world-nation/rss2.0.xml#nt=0000016c-0bf3-d57d-afed-2fff84fd0000-1col-7030col1"
   );
 
-  // payload["ABC"] = await parser.parseURL("https://abc7.com/feed/");
+  payload["ABC"] = await parser.parseURL("https://abc7.com/feed/");
 
   // preprocess rss feeds, everything has a different format for what
   const processed: NewsArticle[] = [];
@@ -47,10 +42,10 @@ export const load = (async () => {
       title: article.title as string,
       author: article.creator as string,
       link: article.link as string,
-      description: article.content as string,
+      description: htmlDecode(article.content as string) ?? "",
       date: dayjs(article.isoDate as string).toString(),
       source: "FiveThirtyEight",
-      sentiment: sentiment(`${article.title}: ${article.description}`),
+      sentiment: 0,
       topics: article.categories,
     });
   }
@@ -62,7 +57,7 @@ export const load = (async () => {
       description: article.content as string,
       date: dayjs(article.isoDate as string).toString(),
       source: "New York Times",
-      sentiment: sentiment(`${article.title}: ${article.description}`),
+      sentiment: 0,
       topics: article?.categories?.map((e: any) => e["_"]),
     });
   }
@@ -74,9 +69,21 @@ export const load = (async () => {
       description: article.contentSnippet as string,
       date: dayjs(article.isoDate as string).toString(),
       source: "Los Angeles Times",
-      sentiment: sentiment(`${article.title}: ${article.description}`),
+      sentiment: 0,
     });
-    // console.log(article);
+  }
+
+  for (let article of payload["ABC"].items) {
+    processed.push({
+      title: article.title as string,
+      author: (article.creator as string) ?? "N/A",
+      link: article.link as string,
+      description: article.contentSnippet as string,
+      date: dayjs(article.isoDate as string).toString(),
+      source: "ABC",
+      sentiment: 0,
+      topics: article?.categories[0]?.replace(/^\s+|\s+$/g, "").split(","),
+    });
   }
 
   return { articles: JSON.stringify(processed) };
