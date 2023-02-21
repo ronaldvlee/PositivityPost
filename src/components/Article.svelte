@@ -17,7 +17,7 @@
   export let selectedTags: string[];
   let promise: Promise<any>;
   if (post.sentiment == null)
-    promise = getSentiment(post.description).then((res) => {
+    promise = getSentiment(`${post.title} ${post.description}`).then((res) => {
     post.sentiment = res["sentiment"];
   });
 </script>
