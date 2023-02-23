@@ -73,9 +73,10 @@
   </div>
 </form> -->
 
+<Nav />
+
 <div class="mx-5 mt-5 sm:mx-24 sm:mt-10 grid grid-cols-1 sm:grid-cols-4">
   <!-- <nav>
-    asdf
     <input class="w-6/12 rounded lg border border-gray-400" />
   </nav> -->
   <section class="mx-10 max-w-xs sm:block">
@@ -145,23 +146,3 @@
     />
   </section>
 </div>
-
-<style>
-  
-  /*.layout {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-areas:
-      "nav nav nav nav nav"
-      "main main main main aside";
-  }
-  #main {
-    grid-area: main;
-  }
-  #aside {
-    grid-area: aside;
-  }*/
-  /* nav {
-    grid-area: nav;
-  } */
-</style>
