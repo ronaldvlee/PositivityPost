@@ -1,3 +1,3 @@
-# title
+# PositivityPost
 
-u forgor to put something in the readme u dingus
+News aggregation with sentiment analysis to determine and filter out positive or negative news
