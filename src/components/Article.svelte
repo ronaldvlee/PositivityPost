@@ -23,7 +23,7 @@
 </script>
 
 <a
-  class="flex flex-col mb-2 p-8 border text-black rounded-lg hover:bg-sky-100 transition-all hover:cursor-pointer"
+  class="flex flex-col p-3 sm:mb-2 sm:p-8 border text-black rounded-lg hover:bg-sky-100 transition-all hover:cursor-pointer"
   href={post.link}
 >
   <h1 class="text-xl font-bold">{post.title}</h1>

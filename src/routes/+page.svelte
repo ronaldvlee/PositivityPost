@@ -73,23 +73,12 @@
   </div>
 </form> -->
 
-<div class="mx-24 mt-10 layout">
+<div class="mx-5 mt-5 sm:mx-24 sm:mt-10 grid grid-cols-1 sm:grid-cols-4">
   <!-- <nav>
     asdf
     <input class="w-6/12 rounded lg border border-gray-400" />
   </nav> -->
-  <section id="main" class="flex flex-col gap-3">
-    <h1 class="text-4xl font-bold">Popular Topics</h1>
-    <TopicSelector {topics} bind:selectedTags />
-    <ArticleList
-      bind:positiveNews
-      bind:negativeNews
-      bind:neutralNews
-      bind:posts
-      {selectedTags}
-    />
-  </section>
-  <section id="aside" class="mx-10 max-w-xs">
+  <section class="mx-10 max-w-xs sm:block">
     <section class="flex items-center gap-5">
       <img src="/excuse me.jpg" alt="user avatar" class="w-20 rounded-full" />
       <section class="flex flex-col">
@@ -144,13 +133,24 @@
     <h2 class="text-2xl font-bold mt-10 mb-2">More Topics</h2>
     <TopicSelector start={11} length={25} {topics} bind:selectedTags />
   </section>
+  <section id="main" class="flex flex-col gap-1 sm:gap-3 sm:col-span-3">
+    <h1 class="text-4xl font-bold pb-5">Popular Topics</h1>
+    <TopicSelector {topics} bind:selectedTags />
+    <ArticleList
+      bind:positiveNews
+      bind:negativeNews
+      bind:neutralNews
+      bind:posts
+      {selectedTags}
+    />
+  </section>
 </div>
 
 <style>
-  .layout {
+  
+  /*.layout {
     display: grid;
     grid-template-columns: 4fr 1fr;
-    /* grid-template-rows: 1fr 3fr; */
     grid-template-areas:
       "nav nav nav nav nav"
       "main main main main aside";
@@ -160,7 +160,7 @@
   }
   #aside {
     grid-area: aside;
-  }
+  }*/
   /* nav {
     grid-area: nav;
   } */
