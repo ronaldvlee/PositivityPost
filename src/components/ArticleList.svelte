@@ -27,7 +27,7 @@
     }
     // else if (new RegExp("^" + search + "$", "i").test(e.title)) return true;
     else return false;
-  }) as post (post.title)}
+  }) as post (post.key)}
     <!-- {#if selectedTags.length == 0 || _.intersection(selectedTags, post.topics).length > 0} -->
     <Article bind:post {selectedTags} />
     <!-- {/if} -->

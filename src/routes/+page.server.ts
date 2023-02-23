@@ -9,6 +9,19 @@ function htmlDecode(input: string) {
   return dom.window.document.textContent;
 }
 
+  function randomString(length: number) {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  }
+
 export interface NewsArticle {
   author: string;
   title: string;
@@ -18,6 +31,7 @@ export interface NewsArticle {
   source: string;
   sentiment: number | null;
   topics?: string[];
+  key: string;
 }
 
 export const load = (async () => {
@@ -37,6 +51,7 @@ export const load = (async () => {
           source: "FiveThirtyEight",
           sentiment: null,
           topics: article.categories,
+          key: randomString(10)
         });
       }
     }),
@@ -53,6 +68,7 @@ export const load = (async () => {
             source: "New York Times",
             sentiment: null,
             topics: article?.categories?.map((e: any) => e["_"]),
+            key: randomString(10),
           });
         }
       }),
@@ -70,6 +86,7 @@ export const load = (async () => {
             date: dayjs(article.isoDate as string).toString(),
             source: "Los Angeles Times",
             sentiment: null,
+            key: randomString(10),
           });
         }
       }),
@@ -85,6 +102,7 @@ export const load = (async () => {
           source: "ABC",
           sentiment: null,
           topics: article?.categories[0]?.replace(/^\s+|\s+$/g, "").split(","),
+          key: randomString(10),
         });
       }
     }),
@@ -102,6 +120,7 @@ export const load = (async () => {
             date: dayjs(article.isoDate as string).toString(),
             source: "CNBC",
             sentiment: null,
+            key: randomString(10),
           });
         }
       }),
@@ -115,6 +134,7 @@ export const load = (async () => {
           date: dayjs(article.isoDate as string).toString(),
           source: "BBC",
           sentiment: null,
+          key: randomString(10),
         });
       }
     }),
@@ -132,6 +152,7 @@ export const load = (async () => {
             date: dayjs(article.isoDate as string).toString(),
             source: "Reuters",
             sentiment: null,
+            key: randomString(10),
           });
         }
       }),
@@ -147,6 +168,7 @@ export const load = (async () => {
             date: dayjs(article.pubDate as string).toString(),
             source: "CBS",
             sentiment: null,
+            key: randomString(10),
           });
         }
       }),
