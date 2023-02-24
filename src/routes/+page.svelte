@@ -2,9 +2,10 @@
   import type { PageData } from "./$types";
   import type { NewsArticle } from "./+page.server";
   import _ from "lodash";
+
   import ArticleList from "../components/ArticleList.svelte";
-  import TopicSelector from "../components/TopicSelector.svelte";
   import Nav from "../components/Nav.svelte";
+  import TopicSelector from "../components/TopicSelector.svelte";
 
   export let data: PageData;
   let posts: NewsArticle[] = JSON.parse(data["articles"]) as NewsArticle[];
@@ -110,7 +111,9 @@
         <div
           class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
         />
-        <span class="ml-3 text-sm font-medium whitespace-nowrap">Positive News</span>
+        <span class="ml-3 text-sm font-medium whitespace-nowrap"
+          >Positive News</span
+        >
       </label>
       <label class="relative inline-flex items-center cursor-pointer">
         <input
@@ -122,7 +125,9 @@
         <div
           class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
         />
-        <span class="ml-3 text-sm font-medium whitespace-nowrap">Neutral News</span>
+        <span class="ml-3 text-sm font-medium whitespace-nowrap"
+          >Neutral News</span
+        >
       </label>
       <label class="relative inline-flex items-center cursor-pointer">
         <input
@@ -134,7 +139,9 @@
         <div
           class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
         />
-        <span class="ml-3 text-sm font-medium whitespace-nowrap">Negative News</span>
+        <span class="ml-3 text-sm font-medium whitespace-nowrap"
+          >Negative News</span
+        >
       </label>
     </section>
     <!-- <h2 class="text-2xl font-bold mt-10 mb-2">Search</h2>

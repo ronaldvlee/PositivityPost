@@ -1,7 +1,8 @@
+import type { RequestEvent } from "./$types";
 import { json } from "@sveltejs/kit";
 import aposToLexForm from "apos-to-lex-form";
 import natural from "natural";
-import type { RequestEvent } from "./$types";
+
 const { WordTokenizer, SentimentAnalyzer, PorterStemmer } = natural;
 
 function sentiment(string: string, vocabulary: string) {

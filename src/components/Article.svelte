@@ -1,8 +1,8 @@
 <script lang="ts">
+  import type { NewsArticle } from "../routes/+page.server";
   import axios from "axios";
   import dayjs from "dayjs";
   import relative from "dayjs/plugin/relativeTime";
-  import type { NewsArticle } from "../routes/+page.server";
 
   dayjs.extend(relative);
 
