@@ -79,7 +79,18 @@
   <!-- <nav>
     <input class="w-6/12 rounded lg border border-gray-400" />
   </nav> -->
-  <section class="mx-10 max-w-xs sm:block">
+  <section id="main" class="flex flex-col gap-1 order-2 sm:gap-3 sm:col-span-3">
+    <h1 class="text-4xl font-bold pb-5">Popular Topics</h1>
+    <TopicSelector {topics} bind:selectedTags />
+    <ArticleList
+      bind:positiveNews
+      bind:negativeNews
+      bind:neutralNews
+      bind:posts
+      {selectedTags}
+    />
+  </section>
+  <section class="mx-10 max-w-xs order-1 sm:order-3 sm:col-span-1">
     <section class="flex items-center gap-5">
       <img src="/excuse me.jpg" alt="user avatar" class="w-20 rounded-full" />
       <section class="flex flex-col">
@@ -99,7 +110,7 @@
         <div
           class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
         />
-        <span class="ml-3 text-sm font-medium">Positive News</span>
+        <span class="ml-3 text-sm font-medium whitespace-nowrap">Positive News</span>
       </label>
       <label class="relative inline-flex items-center cursor-pointer">
         <input
@@ -111,7 +122,7 @@
         <div
           class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
         />
-        <span class="ml-3 text-sm font-medium">Neutral News</span>
+        <span class="ml-3 text-sm font-medium whitespace-nowrap">Neutral News</span>
       </label>
       <label class="relative inline-flex items-center cursor-pointer">
         <input
@@ -123,7 +134,7 @@
         <div
           class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
         />
-        <span class="ml-3 text-sm font-medium">Negative News</span>
+        <span class="ml-3 text-sm font-medium whitespace-nowrap">Negative News</span>
       </label>
     </section>
     <!-- <h2 class="text-2xl font-bold mt-10 mb-2">Search</h2>
@@ -133,16 +144,5 @@
     /> -->
     <h2 class="text-2xl font-bold mt-10 mb-2">More Topics</h2>
     <TopicSelector start={11} length={25} {topics} bind:selectedTags />
-  </section>
-  <section id="main" class="flex flex-col gap-1 sm:gap-3 sm:col-span-3">
-    <h1 class="text-4xl font-bold pb-5">Popular Topics</h1>
-    <TopicSelector {topics} bind:selectedTags />
-    <ArticleList
-      bind:positiveNews
-      bind:negativeNews
-      bind:neutralNews
-      bind:posts
-      {selectedTags}
-    />
   </section>
 </div>
