@@ -1,9 +1,10 @@
 <script lang="ts">
-  import _ from "lodash";
-  import { fade, fly } from "svelte/transition";
-  import { flip } from "svelte/animate";
-  import type { NewsArticle } from "../routes/+page.server";
   import { goto } from "$app/navigation";
+  import type { NewsArticle } from "../routes/+page.server";
+  import _ from "lodash";
+  import { flip } from "svelte/animate";
+  import { fade, fly } from "svelte/transition";
+
   import Article from "./Article.svelte";
 
   export let posts: NewsArticle[];

@@ -1,14 +1,15 @@
+import type { RequestEvent } from "./$types";
 import { json } from "@sveltejs/kit";
 import aposToLexForm from "apos-to-lex-form";
 import natural from "natural";
-import type { RequestEvent } from "./$types";
+
 const { WordTokenizer, SentimentAnalyzer, PorterStemmer } = natural;
 
 function sentiment(string: string, vocabulary: string) {
   const tokenizer = new WordTokenizer();
   const tokenized = tokenizer.tokenize(
     aposToLexForm(string)
-      .replace(/[.,\/#\-!$%\^&\*';:{}=\-_`~()]|undefined/g, "")
+      .replace(/[.,/#\-!$%^&*';:{}=\-_`~()]|undefined/g, "")
       .toLowerCase()
   );
   const analyzer = new SentimentAnalyzer("English", PorterStemmer, vocabulary);

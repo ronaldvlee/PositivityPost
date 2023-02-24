@@ -1,7 +1,7 @@
-import Parser from "rss-parser";
 import type { PageServerLoad } from "./$types";
 import dayjs from "dayjs";
 import { JSDOM } from "jsdom";
+import Parser from "rss-parser";
 
 function htmlDecode(input: string) {
   return input;
@@ -9,18 +9,18 @@ function htmlDecode(input: string) {
   return dom.window.document.textContent;
 }
 
-  function randomString(length: number) {
-    let result = "";
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return result;
+function randomString(length: number) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
   }
+  return result;
+}
 
 export interface NewsArticle {
   author: string;
@@ -36,12 +36,12 @@ export interface NewsArticle {
 
 export const load = (async () => {
   const payload: any = {};
-  let parser = new Parser();
+  const parser = new Parser();
   // preprocess rss feeds, everything has a different format for what
   const processed: NewsArticle[] = [];
   await Promise.all([
     parser.parseURL("https://fivethirtyeight.com/all/feed").then((payload) => {
-      for (let article of payload.items) {
+      for (const article of payload.items) {
         processed.push({
           title: article.title as string,
           author: article.creator as string,
@@ -51,14 +51,14 @@ export const load = (async () => {
           source: "FiveThirtyEight",
           sentiment: null,
           topics: article.categories,
-          key: randomString(10)
+          key: randomString(10),
         });
       }
     }),
     parser
       .parseURL("https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml")
       .then((payload) => {
-        for (let article of payload.items) {
+        for (const article of payload.items) {
           processed.push({
             title: article.title as string,
             author: (article.creator as string) ?? "N/A",
@@ -77,7 +77,7 @@ export const load = (async () => {
         "https://www.latimes.com/world-nation/rss2.0.xml#nt=0000016c-0bf3-d57d-afed-2fff84fd0000-1col-7030col1"
       )
       .then((payload) => {
-        for (let article of payload.items) {
+        for (const article of payload.items) {
           processed.push({
             title: article.title as string,
             author: (article.creator as string) ?? "N/A",
@@ -91,7 +91,7 @@ export const load = (async () => {
         }
       }),
     parser.parseURL("https://abc7.com/feed/").then((payload) => {
-      for (let article of payload.items) {
+      for (const article of payload.items) {
         if (!article || !article.categories) break;
         processed.push({
           title: article.title as string,
@@ -111,7 +111,7 @@ export const load = (async () => {
         "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114"
       )
       .then((payload) => {
-        for (let article of payload.items) {
+        for (const article of payload.items) {
           processed.push({
             title: article.title as string,
             author: (article.creator as string) ?? "N/A",
@@ -125,7 +125,7 @@ export const load = (async () => {
         }
       }),
     parser.parseURL("http://feeds.bbci.co.uk/news/rss.xml").then((payload) => {
-      for (let article of payload.items) {
+      for (const article of payload.items) {
         processed.push({
           title: article.title as string,
           author: (article.creator as string) ?? "N/A",
@@ -143,7 +143,7 @@ export const load = (async () => {
         "https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=bestl"
       )
       .then((payload) => {
-        for (let article of payload.items) {
+        for (const article of payload.items) {
           processed.push({
             title: article.title as string,
             author: (article.creator as string) ?? "N/A",
@@ -159,7 +159,7 @@ export const load = (async () => {
     parser
       .parseURL("https://www.cbsnews.com/latest/rss/main")
       .then((payload) => {
-        for (let article of payload.items) {
+        for (const article of payload.items) {
           processed.push({
             title: article.title as string,
             author: (article.creator as string) ?? "N/A",

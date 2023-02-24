@@ -2,9 +2,10 @@
   import type { PageData } from "./$types";
   import type { NewsArticle } from "./+page.server";
   import _ from "lodash";
+
   import ArticleList from "../components/ArticleList.svelte";
-  import TopicSelector from "../components/TopicSelector.svelte";
   import Nav from "../components/Nav.svelte";
+  import TopicSelector from "../components/TopicSelector.svelte";
 
   export let data: PageData;
   let posts: NewsArticle[] = JSON.parse(data["articles"]) as NewsArticle[];
