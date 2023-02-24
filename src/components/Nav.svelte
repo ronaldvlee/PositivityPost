@@ -1,26 +1,36 @@
-<nav class="flex justify-center items-center px-5 flex-wrap sm:justify-between border-b">
-  <div class="flex items-center gap-3 h-16 w-2/3 sm:w-1/2">
-    <a class="group transition hover:text-black dark:hover:text-black text-xl font-bold" href="/">
-      PositivityPost
-      <span
-        class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-black dark:bg-black"
-      />
-    </a>
-  </div>
-  
-  <label class="flex justify-end w-1/3 gap-4 sm:hidden sm:w-1/2" for="nav-menu">
-    <a id="menu-icon" class="text-xl hover:text-black dark:hover:text-black">
-    </a>
-  </label>
+<script lang="ts">
+  let closed = false;
+</script>
 
-  <div class="panel peer-checked:h-0 overflow-hidden sm:h-full sm:peer-checked:h-full sm:overflow-visible sm:flex">
-    <ul class="flex p-5 flex-col gap-5 sm:flex-row sm:items-center sm:p-0 text-sm">
-      <li>
-        <a href="/register" class="rounded-md sm:bg-blue-600 p-3 sm:text-white sm:font-bold">Register</a>
-      </li>
-      <li>
-        <a href="/login" class="p-3">Login</a>
-      </li>
-    </ul>
+<nav class="flex items-center justify-between flex-wrap p-6 border-b">
+  <a href="/" class="flex items-center flex-shrink-0 mr-6">
+    <img class="w-20 hidden lg:block" src="/logo.svg" alt="Positivity Post Logo"/>
+    <span class="font-semibold text-xl tracking-tight block lg:hidden">PositivityPost</span>
+  </a>
+  <!-- Hamburger menu  -->
+  <div class="block lg:hidden">
+    <button 
+      class="flex items-center w-3 h-3 p-3 pr-3"
+      on:click = "{()=> closed = !closed}"
+    >
+      <div class:hidden={closed} class="items-center text-sm object-scale-down font-semibold">&#9587;</div>
+      <div class:hidden={!closed} class="space-y-1 object-scale-down">
+        <div class="w-4 h-0.5 bg-gray-600"></div>
+        <div class="w-4 h-0.5 bg-gray-600"></div>
+        <div class="w-4 h-0.5 bg-gray-600"></div>
+      </div>
+    </button> 
+  </div>
+  <div class:hidden={closed} class="w-full block flex-grow mt-4 lg:mt-0 lg:flex lg:items-center lg:w-auto">
+    <!-- Left side elements of Nav -->
+    <div class="text-sm lg:flex-grow">
+      
+    </div>
+
+    <!-- Right side elements of Nav -->
+    <div>
+      <a href="/register" class="block lg:inline-block text-sm px-5 py-3 leading-none mt-4 rounded lg:mt-0 lg:bg-blue-600 lg:text-white lg:font-bold">Register</a>
+      <a href="/register" class="block lg:inline-block text-sm px-5 py-3 leading-none mt-4 lg:mt-0">Login</a>
+    </div>
   </div>
 </nav>
