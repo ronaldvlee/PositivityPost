@@ -1,0 +1,51 @@
+name: build and test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  website_check:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up SvelteKit on Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ github.event.pull_request.number }}-
+
+      - name: Install Dependencies
+        run: npm install
+
+      # - name: Svelte check
+      #   run: npm run check
+
+      # checks linter and formatter
+      - name: Lint
+        run: npm run lint
+
+      # check if it builds successfully
+      - name: Build
+        run: npm run build
+
+      # - name: Test
+      #   run: npm run test

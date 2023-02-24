@@ -9,7 +9,7 @@ function sentiment(string: string, vocabulary: string) {
   const tokenizer = new WordTokenizer();
   const tokenized = tokenizer.tokenize(
     aposToLexForm(string)
-      .replace(/[.,\/#\-!$%\^&\*';:{}=\-_`~()]|undefined/g, "")
+      .replace(/[.,/#\-!$%^&*';:{}=\-_`~()]|undefined/g, "")
       .toLowerCase()
   );
   const analyzer = new SentimentAnalyzer("English", PorterStemmer, vocabulary);
