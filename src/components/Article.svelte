@@ -1,6 +1,10 @@
 <script lang="ts">
-  import type { NewsArticle } from "../routes/+page.server";
   import axios from "axios";
+  import dayjs from "dayjs";
+  import relative from "dayjs/plugin/relativeTime";
+  import type { NewsArticle } from "../routes/+page.server";
+
+  dayjs.extend(relative);
 
   async function getSentiment(input: string) {
     const request = await axios.post("./api/sentiment", { text: input });
@@ -18,8 +22,8 @@
   let promise: Promise<any>;
   if (post.sentiment == null)
     promise = getSentiment(`${post.title} ${post.description}`).then((res) => {
-    post.sentiment = res["sentiment"];
-  });
+      post.sentiment = res["sentiment"];
+    });
 </script>
 
 <a
@@ -38,6 +42,9 @@
           Sentiment: {post.sentiment?.toFixed(2)}
         </p>
       {/await}
+      <p title={dayjs(post.date).toDate().toDateString()}>
+        {dayjs(post.date).fromNow()}
+      </p>
     </section>
   </div>
   <div class="flex flex-wrap gap-2 mt-5">
