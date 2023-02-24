@@ -5,6 +5,7 @@
 
   import ArticleList from "../components/ArticleList.svelte";
   import Nav from "../components/Nav.svelte";
+  import ToggleSwitch from "../components/ToggleSwitch.svelte";
   import TopicSelector from "../components/TopicSelector.svelte";
 
   export let data: PageData;
@@ -100,50 +101,17 @@
     </section>
     <h2 class="text-2xl font-bold mt-10 mb-2">Show me only</h2>
     <section class="flex flex-col gap-1">
-      <label class="relative inline-flex items-center cursor-pointer">
-        <input
-          type="checkbox"
-          value=""
-          class="sr-only peer"
-          bind:checked={positiveNews}
-        />
-        <div
-          class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
-        />
-        <span class="ml-3 text-sm font-medium">Positive News</span>
-      </label>
-      <label class="relative inline-flex items-center cursor-pointer">
-        <input
-          type="checkbox"
-          value=""
-          class="sr-only peer"
-          bind:checked={neutralNews}
-        />
-        <div
-          class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
-        />
-        <span class="ml-3 text-sm font-medium">Neutral News</span>
-      </label>
-      <label class="relative inline-flex items-center cursor-pointer">
-        <input
-          type="checkbox"
-          value=""
-          class="sr-only peer"
-          bind:checked={negativeNews}
-        />
-        <div
-          class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
-        />
-        <span class="ml-3 text-sm font-medium">Negative News</span>
-      </label>
+      <ToggleSwitch bind:checked={positiveNews}>Positive News</ToggleSwitch>
+      <ToggleSwitch bind:checked={neutralNews}>Neutral News</ToggleSwitch>
+      <ToggleSwitch bind:checked={negativeNews}>Negative News</ToggleSwitch>
+      <!-- <h2 class="text-2xl font-bold mt-10 mb-2">Search</h2>
+      <input
+        class="w-full rounded-lg lg border border-gray-400 h-10 p-1"
+        bind:value={search}
+      /> -->
+      <h2 class="text-2xl font-bold mt-10 mb-2">More Topics</h2>
+      <TopicSelector start={11} length={25} {topics} bind:selectedTags />
     </section>
-    <!-- <h2 class="text-2xl font-bold mt-10 mb-2">Search</h2>
-    <input
-      class="w-full rounded-lg lg border border-gray-400 h-10 p-1"
-      bind:value={search}
-    /> -->
-    <h2 class="text-2xl font-bold mt-10 mb-2">More Topics</h2>
-    <TopicSelector start={11} length={25} {topics} bind:selectedTags />
   </section>
 </div>
 

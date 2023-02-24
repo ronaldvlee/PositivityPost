@@ -9,7 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "test": "vitest run",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "lint": "prettier --plugin-search-dir . --list-different . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
   "prettier": {
