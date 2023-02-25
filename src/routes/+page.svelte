@@ -112,6 +112,13 @@
       /> -->
       <h2 class="text-2xl font-bold mt-10 mb-2">More Topics</h2>
       <TopicSelector start={11} length={25} {topics} bind:selectedTags />
+      <div class="flex flex-wrap text-gray-400 gap-2 justify-center">
+        <a href="" class="hover:underline hover:cursor-pointer">About</a>
+        <a href="" class="hover:underline hover:cursor-pointer"
+          >View source on Github</a
+        >
+        <span> Copyright 2023 </span>
+      </div>
     </section>
   </section>
 </div>
