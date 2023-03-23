@@ -1,15 +1,17 @@
 <script lang="ts">
-  let closed = false;
+  let closed = true;
 </script>
 
-<nav class="flex items-center justify-between flex-wrap p-6 border-b">
+<nav
+  class="flex items-center justify-between flex-wrap py-6 md:mx-24 mx-5 border-b"
+>
   <a href="/" class="flex items-center flex-shrink-0 mr-6">
     <img
       class="w-20 hidden lg:block"
       src="/logo.svg"
       alt="Positivity Post Logo"
     />
-    <span class="font-semibold text-xl tracking-tight block lg:hidden"
+    <span class="font-semibold text-xl tracking-tight block md:hidden"
       >PositivityPost</span
     >
   </a>
