@@ -1,6 +1,6 @@
+import aposToLexForm from "apos-to-lex-form";
 import type { RequestEvent } from "./$types";
 import { json } from "@sveltejs/kit";
-import aposToLexForm from "apos-to-lex-form";
 import natural from "natural";
 
 const { WordTokenizer, SentimentAnalyzer, PorterStemmer } = natural;
