@@ -19,7 +19,7 @@
 </script>
 
 <div
-  class="rounded-lg border px-3 py-1 hover:bg-black hover:text-white transition-all border-gray-400"
+  class="rounded-lg border px-3 py-1 hover:cursor-pointer hover:bg-black hover:text-white transition-all border-gray-400"
   class:bg-black={selected == true}
   class:text-white={selected == true}
   on:click={toggle}

@@ -1,6 +1,10 @@
 <script lang="ts">
   import type { NewsArticle } from "../routes/+page.server";
+  import relative from "dayjs/plugin/relativeTime";
   import axios from "axios";
+  import dayjs from "dayjs";
+
+  dayjs.extend(relative);
 
   async function getSentiment(input: string) {
     const request = await axios.post("./api/sentiment", { text: input });
@@ -23,7 +27,7 @@
 </script>
 
 <a
-  class="flex flex-col mb-2 p-8 border text-black rounded-lg hover:bg-sky-100 transition-all hover:cursor-pointer"
+  class="flex flex-col p-3 sm:mb-2 sm:p-8 border text-black rounded-lg hover:bg-sky-100 transition-all hover:cursor-pointer"
   href={post.link}
 >
   <h1 class="text-xl font-bold">{post.title}</h1>
@@ -38,6 +42,9 @@
           Sentiment: {post.sentiment?.toFixed(2)}
         </p>
       {/await}
+      <p title={dayjs(post.date).toDate().toDateString()}>
+        {dayjs(post.date).fromNow()}
+      </p>
     </section>
   </div>
   <div class="flex flex-wrap gap-2 mt-5">

@@ -12,16 +12,6 @@
     "lint": "prettier --plugin-search-dir . --list-different . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
-  "prettier": {
-    "importOrder": [
-      "^@core/(.*)$",
-      "^@server/(.*)$",
-      "^@ui/(.*)$",
-      "^[./]"
-    ],
-    "importOrderSeparation": true,
-    "importOrderSortSpecifiers": true
-  },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^1.0.3",
     "@sveltejs/kit": "^1.5.6",

@@ -1,79 +1,80 @@
-<nav class="flex justify-center items-center my-2 flex-wrap lg:justify-between">
-  <div class="flex items-center gap-3 h-16 w-2/3 lg:w-1/2">
-    <!-- <img
-      class="rounded-full"
-      src="/assets/images/wayson.jpg"
-      height="40"
-      width="40"
-    /> -->
-    <a class="group transition hover:text-black dark:hover:text-black" href="/">
-      PositivityPost
-      <span
-        class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-black dark:bg-black"
-      />
-    </a>
+<script lang="ts">
+  let closed = true;
+</script>
+
+<nav
+  class="flex items-center justify-between flex-wrap py-6 md:mx-24 mx-5 border-b"
+>
+  <a href="/" class="flex items-center flex-shrink-0 mr-6">
+    <img
+      class="w-20 hidden lg:block"
+      src="/logo.svg"
+      alt="Positivity Post Logo"
+    />
+    <span class="font-semibold text-xl tracking-tight block md:hidden"
+      >PositivityPost</span
+    >
+  </a>
+  <!-- Hamburger menu  -->
+  <div class="block lg:hidden">
+    <button
+      class="flex items-center w-3 h-3 p-3 pr-3"
+      on:click={() => (closed = !closed)}
+    >
+      <div
+        class:hidden={closed}
+        class="items-center text-sm object-scale-down font-semibold"
+      >
+        <!-- X (heroicons) -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class:hidden={!closed} class="space-y-1 object-scale-down">
+        <!-- Hamburger (heroicons) -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </button>
   </div>
-  <input class="hidden peer" checked type="checkbox" id="nav-menu" />
-  <label class="flex justify-end w-1/3 gap-4 lg:hidden lg:w-1/2" for="nav-menu">
-    <!-- <button
-      class="fas fa-moon hover:text-black dark:hover:text-black"
-      x-on:click="darkMode = !darkMode"
-    /> -->
-    <a id="menu-icon" class="text-xl hover:text-black dark:hover:text-black">
-      <i class="fa fa-bars" />
-    </a>
-  </label>
   <div
-    class="panel peer-checked:h-0 overflow-hidden lg:h-full lg:peer-checked:h-full lg:overflow-visible lg:flex"
+    class:hidden={closed}
+    class="w-full flex flex-grow mt-4 lg:mt-0 lg:flex lg:items-center lg:w-auto"
   >
-    <ul class="flex p-5 flex-col gap-5 lg:flex-row lg:items-center lg:p-0">
-      <li>
-        <a
-          class="group transition hover:text-black dark:hover:text-black"
-          href="https://jason-wong.me"
-        >
-          portfolio
-          <span
-            class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-black dark:bg-black"
-          />
-        </a>
-      </li>
-      <li>
-        <a
-          class="group transition hover:text-black dark:hover:text-black"
-          href="https://jason-wong.me/github"
-        >
-          github
-          <span
-            class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-black dark:bg-black"
-          />
-        </a>
-      </li>
-      <li>
-        <a
-          class="group transition hover:text-black dark:hover:text-black"
-          href="https://jason-wong.me/linkedin"
-        >
-          linkedin
-          <span
-            class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-black dark:bg-black"
-          />
-        </a>
-      </li>
-      <li>
-        <a
-          class="group transition hover:text-black dark:hover:text-black"
-          href="https://jason-wong.me/resume"
-        >
-          resume
-          <span
-            class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-black dark:bg-black"
-          />
-        </a>
-      </li>
-      <li class="hidden lg:block hover:text-black dark:hover:text-black">
-        <!-- <button class="fas fa-moon" on:click="darkMode = !darkMode" /> -->
-      </li>
-    </ul>
+    <!-- Left side elements of Nav -->
+    <div class="text-sm lg:flex-grow" />
+
+    <!-- Right side elements of Nav -->
+    <div>
+      <a
+        href="/register"
+        class="block lg:inline-block text-sm px-5 py-3 leading-none mt-4 rounded lg:mt-0 lg:bg-blue-600 lg:text-white lg:font-bold"
+        >Register</a
+      >
+      <a
+        href="/register"
+        class="block lg:inline-block text-sm px-5 py-3 leading-none mt-4 lg:mt-0"
+        >Login</a
+      >
+    </div>
   </div>
 </nav>
