@@ -32,8 +32,6 @@
   let negativeNews = true;
 </script>
 
-<Nav />
-
 <div class="mx-5 mt-5 sm:mx-24 sm:mt-10 grid grid-cols-1 sm:grid-cols-4">
   <section id="main" class="flex flex-col gap-1 order-2 sm:gap-3 sm:col-span-3">
     <h1 class="font-bold pb-5 md:text-4xl text-3xl">Popular Topics</h1>
