@@ -4,7 +4,6 @@
   import _ from "lodash";
 
   import ArticleList from "../components/ArticleList.svelte";
-  import Nav from "../components/Nav.svelte";
   import ToggleSwitch from "../components/ToggleSwitch.svelte";
   import TopicSelector from "../components/TopicSelector.svelte";
 
@@ -75,8 +74,6 @@
   </div>
 </form> -->
 
-<Nav />
-
 <div class="mx-5 mt-5 sm:mx-24 sm:mt-10 grid grid-cols-1 sm:grid-cols-4">
   <!-- <nav>
     <input class="w-6/12 rounded lg border border-gray-400" />
@@ -114,10 +111,10 @@
       <TopicSelector start={11} length={25} {topics} bind:selectedTags />
       <div class="flex flex-wrap text-gray-400 gap-2 justify-center">
         <a href="" class="hover:underline hover:cursor-pointer">About</a>
-        <a href="" class="hover:underline hover:cursor-pointer"
-          >View source on Github</a
+        <a href="https://github.com/jaasonw/PositivityPost" class="hover:underline hover:cursor-pointer"
+          >View Source on Github</a
         >
-        <span> Copyright 2023 </span>
+        <span> Copyright &copy; 2023 </span>
       </div>
     </section>
   </section>
