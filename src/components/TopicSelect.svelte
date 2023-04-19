@@ -1,6 +1,6 @@
 <script lang="ts">
-export let selected = false;
-export let topic = "";
+  export let selected = false;
+  export let topic = "";
   export let count = 0;
   export let selectedTags: any = [];
   function toggle() {

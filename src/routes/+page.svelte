@@ -1,11 +1,17 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
   import type { NewsArticle } from "./+page.server";
+  import type { PageData } from "./$types";
   import _ from "lodash";
 
+  import TopicSelector from "../components/TopicSelector.svelte";
+  import ToggleSwitch from "../components/ToggleSwitch.svelte";
   import ArticleList from "../components/ArticleList.svelte";
+<<<<<<< HEAD
   import ToggleSwitch from "../components/ToggleSwitch.svelte";
   import TopicSelector from "../components/TopicSelector.svelte";
+=======
+  import Nav from "../components/Nav.svelte";
+>>>>>>> d924585c37b0d73363ee5146b324457f85d9fdc8
 
   export let data: PageData;
   let posts: NewsArticle[] = JSON.parse(data["articles"]) as NewsArticle[];
@@ -32,6 +38,7 @@
   let negativeNews = true;
 </script>
 
+<<<<<<< HEAD
 <!-- <img src="https://mdbootstrap.com/img/new/slides/041.jpg" class="max-w-full h-auto" alt="..." /> -->
 
 <!-- <form>
@@ -78,8 +85,13 @@
   <!-- <nav>
     <input class="w-6/12 rounded lg border border-gray-400" />
   </nav> -->
+=======
+<Nav />
+
+<div class="grid grid-cols-1 md:mx-24 md:mt-10 md:grid-cols-4 mx-5 mt-5">
+>>>>>>> d924585c37b0d73363ee5146b324457f85d9fdc8
   <section id="main" class="flex flex-col gap-1 order-2 sm:gap-3 sm:col-span-3">
-    <h1 class="text-4xl font-bold pb-5">Popular Topics</h1>
+    <h1 class="font-bold pb-5 md:text-4xl text-3xl">Popular Topics</h1>
     <TopicSelector {topics} bind:selectedTags />
     <ArticleList
       bind:positiveNews
@@ -90,13 +102,14 @@
     />
   </section>
   <section class="mx-10 max-w-xs order-1 sm:order-3 sm:col-span-1">
-    <section class="flex items-center gap-5">
+    <section class="hidden md:flex items-center gap-5">
       <img src="/excuse me.jpg" alt="user avatar" class="w-20 rounded-full" />
       <section class="flex flex-col">
         <p class="font-bold">Jason Wong</p>
         <p class="text-gray-500">Member</p>
       </section>
     </section>
+<<<<<<< HEAD
     <h2 class="text-2xl font-bold mt-10 mb-2">Show me only</h2>
     <section class="flex flex-col gap-1">
       <ToggleSwitch bind:checked={positiveNews}>Positive News</ToggleSwitch>
@@ -115,6 +128,25 @@
           >View Source on Github</a
         >
         <span> Copyright &copy; 2023 </span>
+=======
+    <section class="md:flex flex-col gap-1 hidden">
+      <h2 class="text-2xl font-bold mt-10 mb-2">Show me only</h2>
+      <div class="flex flex-row md:flex-col">
+        <ToggleSwitch bind:checked={positiveNews}>Positive News</ToggleSwitch>
+        <ToggleSwitch bind:checked={neutralNews}>Neutral News</ToggleSwitch>
+        <ToggleSwitch bind:checked={negativeNews}>Negative News</ToggleSwitch>
+      </div>
+      <div class="md:block hidden">
+        <h2 class="text-2xl font-bold mt-10 mb-2">More Topics</h2>
+        <TopicSelector start={11} length={25} {topics} bind:selectedTags />
+        <div class="flex flex-wrap text-gray-400 gap-2 justify-center">
+          <a href="" class="hover:underline hover:cursor-pointer">About</a>
+          <a href="" class="hover:underline hover:cursor-pointer"
+            >View source on Github</a
+          >
+          <span> Copyright 2023 </span>
+        </div>
+>>>>>>> d924585c37b0d73363ee5146b324457f85d9fdc8
       </div>
     </section>
   </section>

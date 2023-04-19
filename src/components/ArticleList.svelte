@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import type { NewsArticle } from "../routes/+page.server";
-  import _ from "lodash";
-  import { flip } from "svelte/animate";
   import { fade, fly } from "svelte/transition";
+  import { goto } from "$app/navigation";
+  import { flip } from "svelte/animate";
+  import _ from "lodash";
 
   import Article from "./Article.svelte";
 
