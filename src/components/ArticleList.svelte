@@ -21,21 +21,24 @@
 </script>
 
 <div id="articlelist" class="">
-  {#each posts.slice(
-      itemsPerPage * Number($page.url.searchParams.get('page')), 
-      (itemsPerPage * Number($page.url.searchParams.get('page')) + itemsPerPage) < posts.length ? (itemsPerPage * Number($page.url.searchParams.get('page')) + itemsPerPage) : posts.length -1 
-    ).filter((e) => {
-    if (!positiveNews && (e.sentiment ?? 0) > 10) return false;
-    if (!negativeNews && (e.sentiment ?? 0) < -10) return false;
-    if (!neutralNews && (e.sentiment ?? 0) >= -10 && (e.sentiment ?? 0) <= 10) return false;
+  {#each posts
+    .filter((e) => {
+      if (!positiveNews && (e.sentiment ?? 0) > 10) return false;
+      if (!negativeNews && (e.sentiment ?? 0) < -10) return false;
+      if (!neutralNews && (e.sentiment ?? 0) >= -10 && (e.sentiment ?? 0) <= 10) return false;
 
-    if (selectedTags.length == 0) return true;
-    if (_.intersection(selectedTags, e.topics).length > 0) {
-      return true;
-    }
-    // else if (new RegExp("^" + search + "$", "i").test(e.title)) return true;
-    else return false;
-  }) as post (post.key)}
+      if (selectedTags.length == 0) return true;
+      if (_.intersection(selectedTags, e.topics).length > 0) {
+        return true;
+      }
+      // else if (new RegExp("^" + search + "$", "i").test(e.title)) return true;
+      else return false;
+    })
+    .slice(
+        itemsPerPage * Number($page.url.searchParams.get('page')), 
+        (itemsPerPage * Number($page.url.searchParams.get('page')) + itemsPerPage) < posts.length ? (itemsPerPage * Number($page.url.searchParams.get('page')) + itemsPerPage) : posts.length -1 
+    ) as post (post.key)
+  }
     <!-- {#if selectedTags.length == 0 || _.intersection(selectedTags, post.topics).length > 0} -->
     <Article bind:post {selectedTags} />
     <!-- {/if} -->
