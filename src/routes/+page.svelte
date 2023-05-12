@@ -6,7 +6,6 @@
   import TopicSelector from "../components/TopicSelector.svelte";
   import ToggleSwitch from "../components/ToggleSwitch.svelte";
   import ArticleList from "../components/ArticleList.svelte";
-  import Nav from "../components/Nav.svelte";
 
   export let data: PageData;
   let posts: NewsArticle[] = JSON.parse(data["articles"]) as NewsArticle[];
@@ -33,7 +32,6 @@
   let negativeNews = true;
 </script>
 
-<Nav />
 <div class="grid grid-cols-1 md:mx-24 md:mt-10 md:grid-cols-4 mx-5 mt-5">
   <section id="main" class="flex flex-col gap-1 order-2 sm:gap-3 sm:col-span-3">
     <h1 class="font-bold pb-5 md:text-4xl text-3xl">Popular Topics</h1>
