@@ -39,7 +39,7 @@ export const load = (async () => {
   const parser = new Parser();
   // preprocess rss feeds, everything has a different format for what
   const processed: NewsArticle[] = [];
-  await Promise.all([
+  await Promise.allSettled([
     parser.parseURL("https://fivethirtyeight.com/all/feed").then((payload) => {
       for (const article of payload.items) {
         processed.push({
@@ -174,5 +174,5 @@ export const load = (async () => {
       }),
   ]);
 
-  return { articles: JSON.stringify(processed) };
+  return { articles: await JSON.stringify(processed) };
 }) satisfies PageServerLoad;
